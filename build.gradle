@@ -1,0 +1,100 @@
+plugins {
+    id 'maven-publish'
+    id 'com.jfrog.bintray' version '1.8.0'
+    id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+}
+
+ext {
+    // Project constants
+    github_org = 'Discord4J'
+    project_name = 'Discord4J'
+    artifact_group = 'com.discord4j'
+    project_version = "$version"
+    project_description = 'Bill of Materials (BOM) for Discord4J'
+    project_url = 'https://discord4j.com'
+}
+
+group = artifact_group
+version = project_version
+description = project_description
+
+repositories {
+	jcenter()
+	maven { url 'https://jitpack.io' }
+}
+
+dependencyManagement {
+	dependencies {
+		// standard style		
+		dependency "com.discord4j:discord4j-common:$discord4jCommonVersion"
+		dependency "com.discord4j:discord4j-command:$discord4jCommandVersion"
+		dependency "com.discord4j:discord4j-core:$discord4jCoreVersion"
+		dependency "com.discord4j:discord4j-gateway:$discord4jGatewayVersion"
+		dependency "com.discord4j:discord4j-rest:$discord4jRestVersion"
+		dependency "com.discord4j:stores-api:$storesApiVersion"
+		dependency "com.discord4j:stores-common:$storesCommonVersion"
+		dependency "com.discord4j:stores-chronicle:$storesChronicleVersion"
+		dependency "com.discord4j:stores-jdk:$storesJdkVersion"
+		dependency "com.discord4j:stores-redis:$storesRedisVersion"
+		dependency "com.discord4j:stores-tck:$storesTckVersion"
+		// jitpack style
+		dependency "com.discord4j.discord4j:discord4j-common:$discord4jCommonVersion"
+		dependency "com.discord4j.discord4j:discord4j-command:$discord4jCommandVersion"
+		dependency "com.discord4j.discord4j:discord4j-core:$discord4jCoreVersion"
+		dependency "com.discord4j.discord4j:discord4j-gateway:$discord4jGatewayVersion"
+		dependency "com.discord4j.discord4j:discord4j-rest:$discord4jRestVersion"
+		dependency "com.discord4j.stores:stores-api:$storesApiVersion"
+		dependency "com.discord4j.stores:stores-common:$storesCommonVersion"
+		dependency "com.discord4j.stores:stores-chronicle:$storesChronicleVersion"
+		dependency "com.discord4j.stores:stores-jdk:$storesJdkVersion"
+		dependency "com.discord4j.stores:stores-redis:$storesRedisVersion"
+		dependency "com.discord4j.stores:stores-tck:$storesTckVersion"
+	}
+}
+
+bintray {
+	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+	key = project.hasProperty('bintrayKey') ? project.property('bintrayKey') : System.getenv('BINTRAY_KEY')
+	publications = ['maven']
+	dryRun = false
+	publish = true
+	pkg {
+		userOrg = 'austinv11'
+		repo = 'maven'
+		name = 'Discord4J'
+		websiteUrl = project_url
+		issueTrackerUrl = 'https://github.com/Discord4J/BOM/issues'
+		vcsUrl = 'https://github.com/Discord4J/BOM.git'
+		licenses = ['LGPL-3.0']
+		labels = ['discord', 'discord4j', 'd4j', 'reactor']
+		publicDownloadNumbers = true
+		attributes = [:]
+		version {
+			name = project.version
+			vcsTag = project.version
+			gpg {
+				sign = true
+			}
+			if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+				def sonatypeUsername = project.property('sonatypeUsername')
+				def sonatypePassword = project.property('sonatypePassword')
+				mavenCentralSync {
+					user = sonatypeUsername
+					password = sonatypePassword
+				}
+			}
+		}
+	}
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = "4.10.1"
+    distributionType = Wrapper.DistributionType.ALL
+}

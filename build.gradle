@@ -1,6 +1,6 @@
 plugins {
     id 'maven-publish'
-    id 'com.jfrog.bintray' version '1.8.0'
+    id 'nebula.nebula-bintray' version '5.0.0'
     id 'io.spring.dependency-management' version '1.0.6.RELEASE'
 }
 
@@ -20,17 +20,19 @@ description = project_description
 
 repositories {
 	jcenter()
+	maven { url 'https://dl.bintray.com/discord4j/maven' }
 	maven { url 'https://jitpack.io' }
 }
 
 dependencyManagement {
 	dependencies {
-		// standard style		
+		// standard style
 		dependency "com.discord4j:discord4j-common:$discord4jCommonVersion"
 		dependency "com.discord4j:discord4j-command:$discord4jCommandVersion"
 		dependency "com.discord4j:discord4j-core:$discord4jCoreVersion"
 		dependency "com.discord4j:discord4j-gateway:$discord4jGatewayVersion"
 		dependency "com.discord4j:discord4j-rest:$discord4jRestVersion"
+		dependency "com.discord4j:discord4j-voice:$discord4jVoiceVersion"
 		dependency "com.discord4j:stores-api:$storesApiVersion"
 		dependency "com.discord4j:stores-common:$storesCommonVersion"
 		dependency "com.discord4j:stores-chronicle:$storesChronicleVersion"
@@ -43,6 +45,7 @@ dependencyManagement {
 		dependency "com.discord4j.discord4j:discord4j-core:$discord4jCoreVersion"
 		dependency "com.discord4j.discord4j:discord4j-gateway:$discord4jGatewayVersion"
 		dependency "com.discord4j.discord4j:discord4j-rest:$discord4jRestVersion"
+		dependency "com.discord4j.discord4j:discord4j-voice:$discord4jVoiceVersion"
 		dependency "com.discord4j.stores:stores-api:$storesApiVersion"
 		dependency "com.discord4j.stores:stores-common:$storesCommonVersion"
 		dependency "com.discord4j.stores:stores-chronicle:$storesChronicleVersion"
@@ -59,7 +62,7 @@ bintray {
 	dryRun = false
 	publish = true
 	pkg {
-		userOrg = 'austinv11'
+		userOrg = 'discord4j'
 		repo = 'maven'
 		name = 'Discord4J'
 		websiteUrl = project_url
@@ -95,6 +98,6 @@ publishing {
 }
 
 wrapper {
-    gradleVersion = "4.7"
+    gradleVersion = "5.0"
     distributionType = Wrapper.DistributionType.ALL
 }

@@ -18,76 +18,82 @@ group = artifact_group
 version = project_version
 description = project_description
 
+project.logger.info("Version: $version")
+project.logger.info("Discord4J Bintray Version: $discord4jVersion")
+project.logger.info("Discord4J Jitpack Version: $discord4jJitpackVersion")
+project.logger.info("Stores Bintray Version: $storesVersion")
+project.logger.info("Stores Jitpack Version: $storesJitpackVersion")
+
 repositories {
-	jcenter()
-	maven { url 'https://dl.bintray.com/discord4j/maven' }
-	maven { url 'https://jitpack.io' }
+    jcenter()
+    maven { url 'https://dl.bintray.com/discord4j/maven' }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencyManagement {
-	dependencies {
-		// standard style
-		dependency "com.discord4j:discord4j-common:$discord4jCommonVersion"
-		dependency "com.discord4j:discord4j-command:$discord4jCommandVersion"
-		dependency "com.discord4j:discord4j-core:$discord4jCoreVersion"
-		dependency "com.discord4j:discord4j-gateway:$discord4jGatewayVersion"
-		dependency "com.discord4j:discord4j-rest:$discord4jRestVersion"
-		dependency "com.discord4j:discord4j-voice:$discord4jVoiceVersion"
-		dependency "com.discord4j:stores-api:$storesApiVersion"
-		dependency "com.discord4j:stores-common:$storesCommonVersion"
-		dependency "com.discord4j:stores-chronicle:$storesChronicleVersion"
-		dependency "com.discord4j:stores-jdk:$storesJdkVersion"
-		dependency "com.discord4j:stores-redis:$storesRedisVersion"
-		dependency "com.discord4j:stores-tck:$storesTckVersion"
-		// jitpack style
-		dependency "com.discord4j.discord4j:discord4j-common:$discord4jCommonVersion"
-		dependency "com.discord4j.discord4j:discord4j-command:$discord4jCommandVersion"
-		dependency "com.discord4j.discord4j:discord4j-core:$discord4jCoreVersion"
-		dependency "com.discord4j.discord4j:discord4j-gateway:$discord4jGatewayVersion"
-		dependency "com.discord4j.discord4j:discord4j-rest:$discord4jRestVersion"
-		dependency "com.discord4j.discord4j:discord4j-voice:$discord4jVoiceVersion"
-		dependency "com.discord4j.stores:stores-api:$storesApiVersion"
-		dependency "com.discord4j.stores:stores-common:$storesCommonVersion"
-		dependency "com.discord4j.stores:stores-chronicle:$storesChronicleVersion"
-		dependency "com.discord4j.stores:stores-jdk:$storesJdkVersion"
-		dependency "com.discord4j.stores:stores-redis:$storesRedisVersion"
-		dependency "com.discord4j.stores:stores-tck:$storesTckVersion"
-	}
+    dependencies {
+        // standard style
+        dependency "com.discord4j:discord4j-common:$discord4jVersion"
+        dependency "com.discord4j:discord4j-command:$discord4jVersion"
+        dependency "com.discord4j:discord4j-core:$discord4jVersion"
+        dependency "com.discord4j:discord4j-gateway:$discord4jVersion"
+        dependency "com.discord4j:discord4j-rest:$discord4jVersion"
+        dependency "com.discord4j:discord4j-voice:$discord4jVersion"
+        dependency "com.discord4j:stores-api:$storesVersion"
+        dependency "com.discord4j:stores-common:$storesVersion"
+        dependency "com.discord4j:stores-chronicle:$storesVersion"
+        dependency "com.discord4j:stores-jdk:$storesVersion"
+        dependency "com.discord4j:stores-redis:$storesVersion"
+        dependency "com.discord4j:stores-tck:$storesVersion"
+        // jitpack style
+        dependency "com.discord4j.discord4j:discord4j-common:$discord4jJitpackVersion"
+        dependency "com.discord4j.discord4j:discord4j-command:$discord4jJitpackVersion"
+        dependency "com.discord4j.discord4j:discord4j-core:$discord4jJitpackVersion"
+        dependency "com.discord4j.discord4j:discord4j-gateway:$discord4jJitpackVersion"
+        dependency "com.discord4j.discord4j:discord4j-rest:$discord4jJitpackVersion"
+        dependency "com.discord4j.discord4j:discord4j-voice:$discord4jJitpackVersion"
+        dependency "com.discord4j.stores:stores-api:$storesJitpackVersion"
+        dependency "com.discord4j.stores:stores-common:$storesJitpackVersion"
+        dependency "com.discord4j.stores:stores-chronicle:$storesJitpackVersion"
+        dependency "com.discord4j.stores:stores-jdk:$storesJitpackVersion"
+        dependency "com.discord4j.stores:stores-redis:$storesJitpackVersion"
+        dependency "com.discord4j.stores:stores-tck:$storesJitpackVersion"
+    }
 }
 
 bintray {
-	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-	key = project.hasProperty('bintrayKey') ? project.property('bintrayKey') : System.getenv('BINTRAY_KEY')
-	publications = ['maven']
-	dryRun = false
-	publish = true
-	pkg {
-		userOrg = 'discord4j'
-		repo = 'maven'
-		name = 'Discord4J'
-		websiteUrl = project_url
-		issueTrackerUrl = 'https://github.com/Discord4J/BOM/issues'
-		vcsUrl = 'https://github.com/Discord4J/BOM.git'
-		licenses = ['LGPL-3.0']
-		labels = ['discord', 'discord4j', 'd4j', 'reactor']
-		publicDownloadNumbers = true
-		attributes = [:]
-		version {
-			name = project.version
-			vcsTag = project.version
-			gpg {
-				sign = true
-			}
-			if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
-				def sonatypeUsername = project.property('sonatypeUsername')
-				def sonatypePassword = project.property('sonatypePassword')
-				mavenCentralSync {
-					user = sonatypeUsername
-					password = sonatypePassword
-				}
-			}
-		}
-	}
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayKey') ? project.property('bintrayKey') : System.getenv('BINTRAY_KEY')
+    publications = ['maven']
+    dryRun = false
+    publish = true
+    pkg {
+        userOrg = 'discord4j'
+        repo = 'maven'
+        name = 'Discord4J'
+        websiteUrl = project_url
+        issueTrackerUrl = 'https://github.com/Discord4J/BOM/issues'
+        vcsUrl = 'https://github.com/Discord4J/BOM.git'
+        licenses = ['LGPL-3.0']
+        labels = ['discord', 'discord4j', 'd4j', 'reactor']
+        publicDownloadNumbers = true
+        attributes = [:]
+        version {
+            name = project.version
+            vcsTag = project.version
+            gpg {
+                sign = true
+            }
+            if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+                def sonatypeUsername = project.property('sonatypeUsername')
+                def sonatypePassword = project.property('sonatypePassword')
+                mavenCentralSync {
+                    user = sonatypeUsername
+                    password = sonatypePassword
+                }
+            }
+        }
+    }
 }
 
 publishing {
@@ -98,6 +104,6 @@ publishing {
 }
 
 wrapper {
-    gradleVersion = "5.0"
+    gradleVersion = "5.1"
     distributionType = Wrapper.DistributionType.ALL
 }

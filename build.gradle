@@ -18,12 +18,6 @@ group = artifact_group
 version = project_version
 description = project_description
 
-project.logger.info("Version: $version")
-project.logger.info("Discord4J Bintray Version: $discord4jVersion")
-project.logger.info("Discord4J Jitpack Version: $discord4jJitpackVersion")
-project.logger.info("Stores Bintray Version: $storesVersion")
-project.logger.info("Stores Jitpack Version: $storesJitpackVersion")
-
 repositories {
     jcenter()
     maven { url 'https://dl.bintray.com/discord4j/maven' }

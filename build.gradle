@@ -45,12 +45,12 @@ dependencyManagement {
         dependency "com.discord4j.discord4j:discord4j-gateway:$discord4jJitpackVersion"
         dependency "com.discord4j.discord4j:discord4j-rest:$discord4jJitpackVersion"
         dependency "com.discord4j.discord4j:discord4j-voice:$discord4jJitpackVersion"
-        dependency "com.discord4j.stores:stores-api:$storesJitpackVersion"
-        dependency "com.discord4j.stores:stores-common:$storesJitpackVersion"
-        dependency "com.discord4j.stores:stores-chronicle:$storesJitpackVersion"
-        dependency "com.discord4j.stores:stores-jdk:$storesJitpackVersion"
-        dependency "com.discord4j.stores:stores-redis:$storesJitpackVersion"
-        dependency "com.discord4j.stores:stores-tck:$storesJitpackVersion"
+        dependency "com.discord4j.Stores:stores-api:$storesJitpackVersion"
+        dependency "com.discord4j.Stores:stores-common:$storesJitpackVersion"
+        dependency "com.discord4j.Stores:stores-chronicle:$storesJitpackVersion"
+        dependency "com.discord4j.Stores:stores-jdk:$storesJitpackVersion"
+        dependency "com.discord4j.Stores:stores-redis:$storesJitpackVersion"
+        dependency "com.discord4j.Stores:stores-tck:$storesJitpackVersion"
     }
 }
 

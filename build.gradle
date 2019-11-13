@@ -121,8 +121,10 @@ publishing {
     }
 }
 
-signing {
-    sign configurations.archives
+if (isRelease) {
+    signing {
+        sign publishing.publications.mavenJava
+    }
 }
 
 wrapper {

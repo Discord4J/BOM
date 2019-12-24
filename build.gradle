@@ -33,7 +33,6 @@ dependencies {
     constraints {
         // standard style
         api "com.discord4j:discord4j-common:$discord4jVersion"
-        api "com.discord4j:discord4j-command:$discord4jVersion"
         api "com.discord4j:discord4j-core:$discord4jVersion"
         api "com.discord4j:discord4j-gateway:$discord4jVersion"
         api "com.discord4j:discord4j-rest:$discord4jVersion"
@@ -44,9 +43,11 @@ dependencies {
         api "com.discord4j:stores-jdk:$storesVersion"
         api "com.discord4j:stores-redis:$storesVersion"
         api "com.discord4j:stores-tck:$storesVersion"
+        api "com.discord4j:connect-common:$connectVersion"
+        api "com.discord4j:connect-kafka:$connectVersion"
+        api "com.discord4j:connect-rsocket:$connectVersion"
         // jitpack style
         api "com.discord4j.discord4j:discord4j-common:$discord4jJitpackVersion"
-        api "com.discord4j.discord4j:discord4j-command:$discord4jJitpackVersion"
         api "com.discord4j.discord4j:discord4j-core:$discord4jJitpackVersion"
         api "com.discord4j.discord4j:discord4j-gateway:$discord4jJitpackVersion"
         api "com.discord4j.discord4j:discord4j-rest:$discord4jJitpackVersion"
@@ -57,6 +58,9 @@ dependencies {
         api "com.discord4j.Stores:stores-jdk:$storesJitpackVersion"
         api "com.discord4j.Stores:stores-redis:$storesJitpackVersion"
         api "com.discord4j.Stores:stores-tck:$storesJitpackVersion"
+        api "com.discord4j.connect:connect-common:$connectJitpackVersion"
+        api "com.discord4j.connect:connect-kafka:$connectJitpackVersion"
+        api "com.discord4j.connect:connect-rsocket:$connectJitpackVersion"
     }
 }
 

@@ -133,6 +133,7 @@ release {
     preTagCommitMessage = 'Release version'
     tagCommitMessage = 'Release version'
     newVersionCommitMessage = 'Next development version'
+    failOnPublishNeeded = false
     git {
         requireBranch = ''
     }

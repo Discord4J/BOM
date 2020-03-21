@@ -2,6 +2,7 @@ plugins {
     id 'java-platform'
     id 'maven-publish'
     id 'signing'
+    id 'net.researchgate.release' version '2.8.1'
 }
 
 ext {
@@ -124,6 +125,15 @@ publishing {
 if (isRelease) {
     signing {
         sign publishing.publications.mavenJava
+    }
+}
+
+release {
+    preTagCommitMessage = 'Release version'
+    tagCommitMessage = 'Release version'
+    newVersionCommitMessage = 'Next development version'
+    git {
+        requireBranch = ''
     }
 }
 

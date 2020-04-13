@@ -2,6 +2,7 @@ plugins {
     id 'java-platform'
     id 'maven-publish'
     id 'signing'
+    id 'net.researchgate.release' version '2.8.1'
 }
 
 ext {
@@ -25,6 +26,7 @@ repositories {
     maven { url 'https://jitpack.io' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'https://oss.sonatype.org/content/repositories/staging' }
+    maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 
 dependencies {
@@ -127,7 +129,21 @@ publishing {
 
 if (isRelease) {
     signing {
+        def signingKey = findProperty("signingKey")
+        def signingPassword = findProperty("signingPassword")
+        if (signingKey != null && signingPassword != null) {
+            useInMemoryPgpKeys(new String(signingKey.decodeBase64()), signingPassword as String)
+        }
         sign publishing.publications.mavenJava
+    }
+}
+
+release {
+    preTagCommitMessage = 'Release version'
+    tagCommitMessage = 'Release version'
+    newVersionCommitMessage = 'Next development version'
+    git {
+        requireBranch = ''
     }
 }
 

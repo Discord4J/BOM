@@ -14,6 +14,8 @@ ext {
     project_description = 'Bill of Materials (BOM) for Discord4J'
     project_url = 'https://discord4j.com'
 
+    reactor_bom_version = 'Dysprosium-SR7'
+
     isRelease = !version.toString().endsWith('-SNAPSHOT')
 }
 
@@ -32,7 +34,7 @@ repositories {
 javaPlatform.allowDependencies()
 
 dependencies {
-    api platform("io.projectreactor:reactor-bom:Dysprosium-SR6")
+    api platform("io.projectreactor:reactor-bom:$reactor_bom_version")
     constraints {
         // standard style
         api "com.discord4j:discord4j-common:$discord4jVersion"

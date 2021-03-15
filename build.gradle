@@ -47,7 +47,7 @@ dependencies {
         api "com.discord4j:stores-redis:$storesVersion"
         api "com.discord4j:stores-tck:$storesVersion"
         api "com.discord4j:connect-common:$connectVersion"
-        api "com.discord4j:connect-kafka:$connectVersion"
+        api "com.discord4j:connect-rabbitmq:$connectVersion"
         api "com.discord4j:connect-rsocket:$connectVersion"
         // jitpack style
         api "com.discord4j.discord4j:discord4j-common:$discord4jJitpackVersion"
@@ -62,7 +62,7 @@ dependencies {
         api "com.discord4j.Stores:stores-redis:$storesJitpackVersion"
         api "com.discord4j.Stores:stores-tck:$storesJitpackVersion"
         api "com.discord4j.connect:connect-common:$connectJitpackVersion"
-        api "com.discord4j.connect:connect-kafka:$connectJitpackVersion"
+        api "com.discord4j.connect:connect-rabbitmq:$connectJitpackVersion"
         api "com.discord4j.connect:connect-rsocket:$connectJitpackVersion"
     }
 }

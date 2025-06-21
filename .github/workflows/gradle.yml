@@ -20,7 +20,7 @@ jobs:
                     java-version: 11
                     distribution: 'temurin'
             -   name: Build with Gradle
-                run: ./gradlew build closeAndReleaseSonatypeStagingRepository
+                run: ./gradlew build publishToSonatype closeAndReleaseSonatypeStagingRepository
                 env:
                     ORG_GRADLE_PROJECT_signingKey: ${{ secrets.signingKey }}
                     ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.signingPassword }}
